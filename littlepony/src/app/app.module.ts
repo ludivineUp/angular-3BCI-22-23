@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { PoniesComponent } from './ponies/ponies.component';
 import { RacesComponent } from './races/races.component';
 import { PonyComponent } from './pony/pony.component';
+import { RaceLocationPipe } from './race-location.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     PoniesComponent,
     RacesComponent,
-    PonyComponent
+    PonyComponent,
+    RaceLocationPipe
   ],
   imports: [
     BrowserModule,
