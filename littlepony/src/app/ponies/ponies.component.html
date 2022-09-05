@@ -1,5 +1,5 @@
 <ul>
 	<li *ngFor="let p of ponies; let i = index;trackByPonies">
-		{{i}} - {{p.name}} = {{p.color}} / {{p.age}}
+		{{i}} - <pony [pony]="p"></pony>
 	</li>
 </ul>
