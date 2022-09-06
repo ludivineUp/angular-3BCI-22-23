@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PONIES } from './../mock/mock-ponies';
-import { Pony, } from './../pony';
+import { Pony } from './../pony';
+import { PonyService } from './../pony.service';
+
 @Component({
   selector: 'ponies',
   templateUrl: './ponies.component.html',
@@ -10,11 +11,12 @@ export class PoniesComponent implements OnInit {
 
   ponies: Pony[] =  [];
 
-  constructor() { 
-    this.ponies = PONIES;
+  constructor(private service: PonyService) { 
+    this.service.getAll().subscribe(p => this.ponies = p);
   }
 
   ngOnInit(): void {
+    console.log('ponies ' + this.ponies);
   }
 
 }
