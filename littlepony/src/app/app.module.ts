@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { RaceLocationPipe } from './race-location.pipe';
 import { AddPonyComponent } from './add-pony/add-pony.component';
 import { AddRaceComponent } from './add-race/add-race.component';
 import { FakeAuthFormComponent } from './fake-auth-form/fake-auth-form.component';
+import { AddPonyReactiveComponent } from './add-pony-reactive/add-pony-reactive.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import { FakeAuthFormComponent } from './fake-auth-form/fake-auth-form.component
     RaceLocationPipe,
     AddPonyComponent,
     AddRaceComponent,
-    FakeAuthFormComponent
+    FakeAuthFormComponent,
+    AddPonyReactiveComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
