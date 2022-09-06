@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators } from '@angular/forms';
 import { Pony } from './../pony';
 import { PONIES } from './../mock/mock-ponies';
 
@@ -24,9 +23,11 @@ export class AddPonyComponent implements OnInit {
   }
 
   onSubmit(){
+      console.log("toto");
       this.newPony.id = PONIES.length;
       PONIES.push(this.newPony);
-      // fuck les pointeurs
+      // fuck les pointeurs, il faut casser le lien entre ce
+      // putain de poney et le poney du tableau
       this.newPony = new Pony();
   }
 
