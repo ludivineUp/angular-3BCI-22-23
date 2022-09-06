@@ -13,7 +13,6 @@ export class PonyService {
   httpOption = {
     headers : new HttpHeaders({
       'Content-type' :  'application/json',
-      'Access-Control-Allow-Origin': '*',
     })
   };
 
