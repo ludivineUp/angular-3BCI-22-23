@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Pony } from './../pony';
-import { PONIES } from './../mock/mock-ponies';
+import { Pony } from '../pony';
+import {PonyService} from "../pony.service";
 
 @Component({
   selector: 'add-pony-reactive',
@@ -10,23 +10,24 @@ import { PONIES } from './../mock/mock-ponies';
 })
 export class AddPonyReactiveComponent implements OnInit {
 
-  ponyForm = this.fb.group({
-    name : ['entrer le nom', Validators.required],
-    color : ['et sa couleur', Validators.required],
-    age : ['0', Validators.required]
+  ponyForm = this.form_builder.group({
+    name : ['', [Validators.required, Validators.maxLength(50)]],
+    color : ['', Validators.required],
+    age : [18, [Validators.required, Validators.min(0), Validators.max(40)]]
   });
 
-  // injecte le formbuilder, IoC (inversion de contrôle)
-  // le formbuilder permet de créer le form en ts dans le composant
-  constructor(private fb: FormBuilder) { }
+  constructor(private form_builder: FormBuilder,
+              private ponyS: PonyService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit(): void {
       let newPony : Pony = this.ponyForm.value;
-      newPony.id = PONIES.length;
-      PONIES.push(newPony);
+      console.log(this.ponyForm.controls['color'].value);
+      console.log(this.ponyForm.controls['name'].value);
+      console.log(this.ponyForm.controls['age'].value);
+      this.ponyS.addPony(newPony);
   }
 
 }

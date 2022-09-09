@@ -12,11 +12,11 @@ export class FakeAuthFormComponent implements OnInit {
   logged : boolean = false;
 
   /* A la soumission le form récupère les input dans les attr du composant
-  si le log et le pass ne sont pas vide, le form affiche le log avec 
+  si le log et le pass ne sont pas vide, le form affiche le log avec
   un bouton se déconnecter
   si on clic sur le bouton se déconnecter, le formulaire original revient*/
 
-  constructor() { 
+  constructor() {
     this.logged = false;
   }
 

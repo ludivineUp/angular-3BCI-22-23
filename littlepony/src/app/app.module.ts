@@ -14,6 +14,13 @@ import { AddPonyComponent } from './add-pony/add-pony.component';
 import { AddRaceComponent } from './add-race/add-race.component';
 import { FakeAuthFormComponent } from './fake-auth-form/fake-auth-form.component';
 import { AddPonyReactiveComponent } from './add-pony-reactive/add-pony-reactive.component';
+import { ErrorRoutingPageComponent } from './error-routing-page/error-routing-page.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import {AuthGuardService} from "./auth-guard.service";
+import {AuthenticationService} from "./authentication.service";
+import {PonyService} from "./pony.service";
+import {RaceService} from "./race.service";
 
 @NgModule({
   declarations: [
@@ -25,7 +32,10 @@ import { AddPonyReactiveComponent } from './add-pony-reactive/add-pony-reactive.
     AddPonyComponent,
     AddRaceComponent,
     FakeAuthFormComponent,
-    AddPonyReactiveComponent
+    AddPonyReactiveComponent,
+    ErrorRoutingPageComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +44,12 @@ import { AddPonyReactiveComponent } from './add-pony-reactive/add-pony-reactive.
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuardService,
+    AuthenticationService,
+    PonyService,
+    RaceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,7 +8,7 @@ import { Pony } from './pony';
 })
 export class PonyService {
 
-  url = "https://ludivinecrepin.fr/api/";
+  url: string = "https://ludivinecrepin.fr/api/";
 
   httpOption = {
     headers : new HttpHeaders({
@@ -22,5 +22,18 @@ export class PonyService {
 
   getAll(): Observable<Pony[]> {
     return this.http.get<Pony[]>(this.url+'pony-get.php', this.httpOption);
+  }
+
+  // Créer une méthode post pour ajouter un poney
+  addPony(pony: Pony): void {
+    this.http.post(this.url + 'pony-add.php', pony, this.httpOption).subscribe();
+  }
+
+  getPony(id: number): Observable<Pony>{
+    return this.http.get<Pony>(this.url + 'pony-get-id.php/' + id, this.httpOption);
+  }
+
+  updatePony(p: Pony): void {
+    this.http.put(this.url + 'pony-update.php', p, this.httpOption).subscribe();
   }
 }

@@ -1,34 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { Pony } from './../pony';
-import { PONIES } from './../mock/mock-ponies';
-
+import {ActivatedRoute, Router} from '@angular/router';
+import { Pony } from '../pony';
+import {PonyService} from "../pony.service";
 
 @Component({
-  selector: 'add-pony',
+  selector: 'app-add-pony',
   templateUrl: './add-pony.component.html',
   styleUrls: ['./add-pony.component.css']
 })
 export class AddPonyComponent implements OnInit {
 
-  newPony: Pony = new Pony();
+  pony: Pony;
+  update: boolean = false;
 
-  constructor() { 
-    // call once
-    this.newPony= new Pony(0,"nom", "et sa couleur", 0);
-   }
-
-  ngOnInit(): void {
-    // call on each refresh
-    this.newPony= new Pony(0,"entrer un nom", "et sa couleur", 0);
+  constructor(private router: Router,
+              private PonyS: PonyService,
+              private route: ActivatedRoute) {
+    this.pony = new Pony(0,"","",0);
   }
 
-  onSubmit(){
-      console.log("toto");
-      this.newPony.id = PONIES.length;
-      PONIES.push(this.newPony);
-      // fuck les pointeurs, il faut casser le lien entre ce
-      // putain de poney et le poney du tableau
-      this.newPony = new Pony();
+  ngOnInit(): void {
+    this.route.params.subscribe((p) => {
+      if (p['id'] !== undefined) {
+        this.update = true;
+        this.PonyS.getPony(p['id']).subscribe(pony => {
+          this.pony = pony;
+        })
+      } else {
+        this.pony = new Pony(0,"","",0);
+      }
+    })
+  }
+
+  onSubmit(): void{
+    this.update ? this.PonyS.updatePony(this.pony) : this.PonyS.addPony(this.pony);
+
+    this.router.navigate(['/'])
   }
 
 }
